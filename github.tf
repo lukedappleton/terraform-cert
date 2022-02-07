@@ -7,6 +7,6 @@ provider "github" {
 }
 
 resource "github_repository" "tf-cert" {
-  name        = "terraform-cert"
+  name        = "terraform-test"
   visibility = "public"
 }
