@@ -7,7 +7,7 @@ provider "aws" {
 
 data "aws_ami" "app_ami" {
   most_recent = true
-  owners = ["amazon]
+  owners = ["amazon"]
 
   filter {
     name = "name"
