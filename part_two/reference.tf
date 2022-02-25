@@ -28,3 +28,9 @@ resource "aws_security_group" "allow_tls" {
         cidr_blocks = ["${aws_eip.lb.public_ip}/32"]
     }
 }
+
+resource "aws_iam_user" "lb" {
+  name = "loadbalancer.${count.index}"
+  count = 5
+  path = "/system"
+}
