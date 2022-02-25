@@ -5,8 +5,18 @@ provider "aws" {
   secret_key = var.AWS_SECRET_KEY
 }
 
+data "aws_ami" "app_ami" {
+  most_recent = true
+  owners = ["amazon]
+
+  filter {
+    name = "name"
+    values = ["amzn2-ami-hvm"]
+  }
+}
+
 resource "aws_instance" "myec2" {
-  ami           = "ami-0a8b4cd432b1c3063"
+  ami           = data.aws_ami.app_ami.id
   instance_type = "t2.micro"
 }
 
