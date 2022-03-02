@@ -4,10 +4,6 @@ resource "aws_iam_user" "lb" {
   path = "/system/"
 }
 
-output "names" {
-    value = aws_iam_user.lb[*].name
-}
-
-output "arns" {
-    value = aws_iam_user.lb[*].arn
+output "combined_names" {
+    value = zipmap(aws_iam_user.lb[*].name, aws_iam_user.lb[*].arn)
 }
