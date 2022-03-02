@@ -13,17 +13,18 @@ resource "aws_instance" "myec2" {
   instance_type = "t2.micro"
   key_name = "kplabs-tf"
 
+  connection {
+      type = "ssh"
+      user = "root"
+      private_key = var.TF_VAR_KPLABS_SSH
+      host = self.public_ip
+      timeout = "1m"
+  }
+
   provisioner "remote-exec" {
       inline = [
           "sudo amazon-linux-extras install -y nginx",
           "sudo systemctl start nginx"
       ]
-  }
-
-  connection {
-      type = "ssh"
-      user = "ec2-user"
-      private_key = var.TF_VAR_KPLABS_SSH
-      host = self.public_ip
   }
 }
