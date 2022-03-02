@@ -25,5 +25,10 @@ resource "aws_instance" "myec2" {
       user = "ec2-user"
       private_key = var.TF_VAR_KPLABS_SSH
       host = self.public_ip
+      timeout = "1m"
   }
+  
+  depends_on = [
+      aws_network_interface_sg_attachment.sg_attachment
+  ]
 }
