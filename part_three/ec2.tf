@@ -12,7 +12,7 @@ resource "aws_instance" "myec2" {
   ami           = data.aws_ami.app_ami.id
   instance_type = "t2.micro"
   key_name = "kplabs-tf"
-  security_groups = [aws_security_group.allow_ssh.id]
+  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
 
   provisioner "remote-exec" {
       inline = [
