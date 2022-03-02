@@ -5,5 +5,9 @@ resource "aws_iam_user" "lb" {
 }
 
 output "arns" {
+    value = aws_iam_user.lb[*].name
+}
+
+output "arns" {
     value = aws_iam_user.lb[*].arn
 }
