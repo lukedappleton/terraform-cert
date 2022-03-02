@@ -12,6 +12,7 @@ resource "aws_instance" "myec2" {
   ami           = data.aws_ami.app_ami.id
   instance_type = "t2.micro"
   key_name = "kplabs-tf"
+  security_groups = aws_security_group.allow_ssh.id
 
   provisioner "remote-exec" {
       inline = [
@@ -27,8 +28,4 @@ resource "aws_instance" "myec2" {
       host = self.public_ip
       timeout = "1m"
   }
-  
-  depends_on = [
-      aws_network_interface_sg_attachment.sg_attachment
-  ]
 }
