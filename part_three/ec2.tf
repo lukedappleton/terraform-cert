@@ -16,7 +16,7 @@ resource "aws_instance" "myec2" {
 
   provisioner "remote-exec" {
       inline = [
-          "sudo yum update -y"
+          "sudo yum update -y",
           "sudo yum install -y nginx",
           "sudo systemctl start nginx"
       ]
