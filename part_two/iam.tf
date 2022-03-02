@@ -3,3 +3,7 @@ resource "aws_iam_user" "lb" {
   count = 3
   path = "/system/"
 }
+
+output "arns" {
+    value = aws_iam_user.lb[*].arn
+}
